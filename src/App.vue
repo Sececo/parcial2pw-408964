@@ -1,0 +1,364 @@
+<script setup>
+import { RouterLink, RouterView, useRouter } from 'vue-router';
+import { ref } from 'vue';
+const bRouter = useRouter();
+const rout = ref('');
+
+const searchEnter = () => {
+        if (rout.value) {
+            if (rout.value === '/' || rout.value === 'home' || rout.value === 'muro' || rout.value === 'inicio') {
+                rout.value = '/';
+                bRouter.push({ path: `${rout.value}`, params: { rout: rout.value } });
+            } else if (rout.value === 'about' || rout.value === 'info' || rout.value === 'information') {
+                rout.value = 'about';
+                bRouter.push({ path: `${rout.value}`, params: { rout: rout.value } });
+            } else if (rout.value === 'photos' || rout.value === 'fotos' || rout.value === 'pictures') {
+                rout.value = 'photos';
+                bRouter.push({ path: `${rout.value}`, params: { rout: rout.value } });
+            } else {
+                alert('Ruta no encontrada. Por favor, ingrese una ruta válida: muro, info o fotos.');
+            }
+        }
+    
+};
+</script>
+
+<template>
+    <header>
+        <h1>Facebook</h1>
+        <input v-model="rout" @keyup.enter="searchEnter" type="text" id="header_buscar"
+            placeholder="Buscar en Facebook" />
+    </header>
+    <RouterView />
+</template>
+
+<style>
+#app {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    color: #ffffff;
+    width: 100%;
+}
+
+header {
+    background-color: #0d5ed7;
+    color: #ffffff;
+    padding: 10px 0 10px 70vh;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: baseline;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    font-size: 24px;
+    height: 150px;
+    min-width: 100vh;
+}
+
+#header_buscar {
+    height: 28px;
+    margin-top: 50px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    padding-left: 15px;
+}
+
+.main_section_perfil {
+    background-color: #74a6d8;
+    box-sizing: border-box;
+    padding-top: 240px;
+    flex-direction: column;
+    width: 50vh;
+    text-align: center;
+    position: relative;
+    font-size: 24px;
+    height: 100vh;
+    color: #0649cf;
+    text-align: left;
+    min-height: 200vh;
+}
+
+.subrayado {
+    border-bottom: solid #0649cf 5px;
+    border-top: solid #0649cf 5px;
+    padding-top: 30px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding: 20px 0 20px 40px;
+}
+
+.main_section_perfil h2 {
+    background-color: #0649cf;
+    color: #fff;
+    margin: 30px 35px 10px 35px;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.foto_perfil {
+    position: absolute;
+    top: -100px;
+    left: 10vh;
+    margin-top: 40px;
+}
+
+.foto_perfil,
+.amigo {
+    height: 30vh;
+    border-radius: 15px;
+}
+
+.amigo,
+.info_img {
+    height: 15vh;
+    border-radius: 15px;
+    margin: 0 10px;
+}
+
+.amigo:hover {
+    cursor: pointer;
+}
+
+.main_nav {
+    display: flex;
+    position: absolute;
+    top: 28px;
+    left: 30rem;
+    padding: 0 0 0 20vh;
+    gap: 10rem;
+    min-width: 100vh;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}
+
+.main_nav a {
+    background-color: #74a6d8;
+    border: none;
+    color: white;
+    padding: 12px 40px;
+    border-radius: 15px 15px 0 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #0649cf;
+}
+
+.main_nav a:hover {
+    background-color: #0649cf;
+    color: white;
+    cursor: pointer;
+}
+
+.main_nav a:focus {
+    background-color: #0649cf;
+    color: white;
+}
+
+.main_section_muro,
+.main_section_info,
+.main_section_fotos {
+    margin-top: 40px;
+    margin-left: 4rem;
+    box-sizing: border-box;
+    padding: 100px;
+    display: flex;
+    color: #0649cf;
+    width: 100vh;
+}
+
+.crear_publicacion,
+.main_section_info h2 {
+    border-bottom: solid 4px #0649cf;
+    padding-bottom: 10px;
+    width: 100vh;
+}
+
+.crear_publicacion input {
+    border: solid 4px #0649cf;
+    border-radius: 5px;
+    font-size: 36px;
+}
+
+.main_section_muro {
+    flex-direction: column;
+}
+
+.input_publicacion {
+    width: 100vh;
+    margin-bottom: 10px;
+}
+
+.input_publicacion::placeholder {
+    color: #0649cf;
+}
+
+.crear_publicacion button {
+    background-color: #0649cf;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 12px;
+    position: absolute;
+    right: 168px;
+}
+
+.boton_subir_archivo {
+    width: 240px;
+}
+
+.info_img {
+    display: flex;
+    border-radius: 15px;
+    justify-content: space-evenly;
+}
+
+.main_section_info {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 100px;
+    font-size: 24px;
+}
+
+.div_info_img {
+    position: absolute;
+    top: 3rem;
+    right: -10rem;
+    height: 360px;
+    border-radius: 15px;
+}
+
+.main_section_info {
+    padding-top: 0;
+}
+
+.main_section_info h2 {
+    width: 55vh;
+}
+
+.info_social {
+    position: absolute;
+    top: 33rem;
+    left: 50%;
+    display: flex;
+    gap: 20px;
+}
+
+.info_social button {
+    color: #fff;
+    border: none;
+    background-color: #3983cd;
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+.info_social button:hover {
+    cursor: pointer;
+    background-color: #0649cf;
+}
+
+.main_section_div_list {
+    font-size: 30px;
+}
+
+.list_perfil_dos li {
+    list-style: none;
+    text-align: justify;
+    padding-bottom: 10px;
+}
+
+.info_img_dos {
+    display: flex;
+    margin: 0 10vh;
+    justify-content: space-between;
+    color: #0649cf;
+}
+
+.info_img_dos img {
+    height: 10vh;
+    border-radius: 5px;
+}
+
+.info_img_dos p {
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.main_section_div_amigos {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    gap: 10px;
+}
+
+.main_section_perfil h3 {
+    padding-left: 40px;
+}
+
+.main_section_fotos {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    height: 100vh;
+}
+
+.main_section_fotos h2 {
+    font-size: 32px;
+}
+
+.section_fotos_ft img {
+    height: 250px;
+    border-radius: 5px;
+}
+
+.section_fotos_ft {
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    position: absolute;
+    top: 230px;
+    left: 36%;
+}
+
+.muro_publicaciones {
+    margin-top: 20px;
+    display: flex;
+    font-size: 20px;
+    width: 100vh;
+}
+
+.muro_publicaciones img {
+    margin: 0;
+    height: 80px;
+    padding: 0;
+}
+
+.muro_publicaciones div {
+    margin-right: 20px;
+}
+
+.muro_publicaciones p {
+    box-sizing: border-box;
+    padding-top: 40px;
+}
+</style>

@@ -6,7 +6,7 @@ Sebastian Ceballos Correa
 
 ## video
 
-[Link]()
+[Link](https://www.youtube.com/watch?v=XYaSlmHdMxY)
 
 ## comandos
 Ejecutar en orden en la raiz de la app
